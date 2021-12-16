@@ -1,4 +1,4 @@
-import 'package:example/screens/calendar_screen.dart';
+import 'package:example/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -8,10 +8,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: CalendarScreen(),
+      title: 'Flutter Chat Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
     );
   }
 }
