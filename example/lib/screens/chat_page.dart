@@ -1,8 +1,12 @@
 import 'package:example/models/chat_users_model.dart';
 import 'package:example/widgets/conversation_list.dart';
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
+
+  var faker = new Faker();
+
   @override
   _ChatPageState createState() => _ChatPageState();
 }
@@ -10,19 +14,19 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
 
   List<ChatUsers> chatUsers = [
-    ChatUsers(name: "Pablo Galve", messageText: "Good job", imageURL: "", time: "Now"),
-    ChatUsers(name: "Joan Rodriguez", messageText: "That's great", imageURL: "", time: "Yesterday"),
-    ChatUsers(name: "Jorge Henry", messageText: "Hey, where are you?", imageURL: "", time: "31 Mar"),
-    ChatUsers(name: "Anna Foster", messageText: "Answer!", imageURL: "", time: "28 Mar"),
-    ChatUsers(name: "Emily Hawkins", messageText: "Thank you, It's awesome", imageURL: "", time: "23 Mar"),
-    ChatUsers(name: "Santiago Pena", messageText: "will update you in evening", imageURL: "", time: "17 Mar"),
-    ChatUsers(name: "Marta Rodriguez", messageText: "Can you please share the file?", imageURL: "", time: "24 Feb"),
-    ChatUsers(name: "Francisco Cortez", messageText: "How are you?", imageURL: "", time: "18 Feb"),
-    ChatUsers(name: "Philip Fox", messageText: "Busy! Call me in 20 mins", imageURL: "", time: "28 Mar"),
-    ChatUsers(name: "Emily Hawkins", messageText: "Thanks", imageURL: "", time: "23 Mar"),
-    ChatUsers(name: "Juan Perez", messageText: "Everything okay?", imageURL: "", time: "17 Mar"),
-    ChatUsers(name: "Marta Rodriguez", messageText: "Can you please share the file?", imageURL: "", time: "24 Feb"),
-    ChatUsers(name: "Andrea Gioia", messageText: "Have you been talking?", imageURL: "", time: "18 Feb"),
+    ChatUsers(name: faker.person.name(), messageText: "Good job", avatar: "https://i.pravatar.cc/1000", time: "Now"),
+    ChatUsers(name: faker.person.name(), messageText: "That's great", avatar: "https://i.pravatar.cc/950", time: "Yesterday"),
+    ChatUsers(name: faker.person.name(), messageText: "Hey, where are you?", avatar: "https://i.pravatar.cc/900", time: "31 Mar"),
+    ChatUsers(name: faker.person.name(), messageText: "Answer!", avatar: "https://i.pravatar.cc/850", time: "28 Mar"),
+    ChatUsers(name: faker.person.name(), messageText: "Thank you, It's awesome", avatar: "https://i.pravatar.cc/800", time: "23 Mar"),
+    ChatUsers(name: faker.person.name(), messageText: "will update you in evening", avatar: "https://i.pravatar.cc/300", time: "17 Mar"),
+    ChatUsers(name: faker.person.name(), messageText: "Can you please share the file?", avatar: "https://i.pravatar.cc/320", time: "24 Feb"),
+    ChatUsers(name: faker.person.name(), messageText: "How are you?", avatar: "https://i.pravatar.cc/450", time: "18 Feb"),
+    ChatUsers(name: faker.person.name(), messageText: "Busy! Call me in 20 mins", avatar: "https://i.pravatar.cc/300", time: "28 Mar"),
+    ChatUsers(name: faker.person.name(), messageText: "Thanks", avatar: "https://i.pravatar.cc/800", time: "23 Mar"),
+    ChatUsers(name: faker.person.name(), messageText: "Everything okay?", avatar: "https://i.pravatar.cc/240", time: "17 Mar"),
+    ChatUsers(name: faker.person.name(), messageText: "Can you please share the file?", avatar: "https://i.pravatar.cc/370", time: "24 Feb"),
+    ChatUsers(name: faker.person.name(), messageText: "Have you been talking?", avatar: "https://i.pravatar.cc/500", time: "18 Feb"),
   ];
 
   @override
@@ -92,7 +96,7 @@ class _ChatPageState extends State<ChatPage> {
                 return ConversationList(
                   name: chatUsers[index].name,
                   messageText: chatUsers[index].messageText,
-                  imageUrl: chatUsers[index].imageURL,
+                  imageUrl: chatUsers[index].avatar,
                   time: chatUsers[index].time,
                   isMessageRead: (index == 0 || index == 3)?true:false,
                 );

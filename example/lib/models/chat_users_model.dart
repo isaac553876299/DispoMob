@@ -1,15 +1,20 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class ChatUsers{
   String name;
   String messageText;
-  String imageURL;
+  String avatar;
   String time;
   
   ChatUsers({
     required this.name, 
     required this.messageText, 
-    required this.imageURL, 
+    required this.avatar, 
     required this.time
   });
+}
+
+String createAvatarLink(String name){
+  return "https://eu.ui-avatars.com/api/?name=$name&background=2f855a&color=fff";
 }
