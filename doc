@@ -1,0 +1,39 @@
+DESIGN
+
+App to provide a tool to easily administrate a tasks calendar.
+
+The idea is to keep track (as user-friendly anf efficiently as possible) of a list of tasks ordered in time.
+It allows the creation of a work group for any single task.
+Its creator becomes the administrator and has power to delete it, as well as managing its attached users.
+Although, editing the task contents is public by default.
+
+Screens & Format:
+    calendar -> grid of the days, small icons for amount and importance of its tasks.
+        :: grid(days) + scrollable(months)?.
+
+    day -> list of its tasks
+        :: list(tasks widgets) + buttons(add/delete/edit).
+
+    task -> *see description
+        :: column(*properties) + buttons(delete/edit).
+
+    chat -> complete history of messages
+        :: list(messages) + text field(input) + button(send).
+
+Structure of the database:
+    tasks -> list of currently existing tasks (not deleted).
+        task -> *see description.
+            chat -> list of messages (sender?).
+    users -> list of accounts registered (password?).
+        tasks -> list of attached tasks(id).
+
+Description of a task:
+    administrator/creator user id
+    list of attached users id
+    deadline/time
+    description text
+    level of importance/priority
+    todos list
+    chat (polls?)
+
+*Idea subject to changes during the holidays.
