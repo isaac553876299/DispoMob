@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "679934954171",
+    "project_id": "dispomob",
+    "storage_bucket": "dispomob.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679934954171:android:30fa369001aed48070779e",
+        "android_client_info": {
+          "package_name": "com.example.dispo_mob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679934954171-m3smvsjdkcsrntmar5hudphjtseqif09.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp_2Hm1Kd8jCd-He5pvMY1cJq444DUlSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679934954171-m3smvsjdkcsrntmar5hudphjtseqif09.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
