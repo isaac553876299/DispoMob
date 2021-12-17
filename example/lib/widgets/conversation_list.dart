@@ -1,3 +1,4 @@
+import 'package:example/screens/test.dart';
 import 'package:flutter/material.dart';
 
 class ConversationList extends StatefulWidget{
@@ -24,6 +25,12 @@ class _ConversationListState extends State<ConversationList> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
+        Navigator.push(
+          context,
+          new MaterialPageRoute(
+            builder: (BuildContext context) => new Screen1()
+          )
+        );
       },
       child: Container(
         padding: EdgeInsets.only(left: 16,right: 16,top: 10,bottom: 10),
