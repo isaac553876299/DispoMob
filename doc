@@ -8,11 +8,11 @@ Its creator becomes the administrator and has power to delete it, as well as man
 Although, editing the task contents is public by default.
 
 Screens & Format:
-    calendar -> grid of the days, small icons for amount and importance of its tasks.
-        :: grid(days) + scrollable(months)?.
+    calendar -> grid of the days, small icons with an specific color to know the work for each day.
+        :: grid(days) + button(month).
 
     day -> list of its tasks
-        :: list(tasks widgets) + buttons(add/delete/edit).
+        :: list(tasks widgets) + buttons(add/delete(hold)/edit).
 
     task -> *see description
         :: column(*properties) + buttons(delete/edit).
