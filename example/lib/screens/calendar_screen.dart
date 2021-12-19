@@ -49,21 +49,56 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.greenAccent,
                 ),
-                child: Center(
-                  child: Text(
-                    "$index",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.pink[900],
+                child: Stack(
+                  children: [
+                    Text(
+                      "$index",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink[900],
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 20),
+                      child: Column(
+                        children: [
+                          MiniTask(color: Colors.pink),
+                          const SizedBox(height: 2),
+                          MiniTask(color: Colors.green),
+                          const SizedBox(height: 2),
+                          MiniTask(color: Colors.purpleAccent),
+                          const SizedBox(height: 2),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
             );
           },
           itemCount: 32,
         ),
+      ),
+    );
+  }
+}
+
+class MiniTask extends StatelessWidget {
+  final Color color;
+  MiniTask({
+    Key? key,
+    required this.color,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 20,
+      height: 5,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(10),
       ),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:example/models/task_model.dart';
 
 class DayScreen extends StatefulWidget {
-  const DayScreen({Key? key}) : super(key: key);
+  late List<Task> tasks;
+  DayScreen({Key? key}) : super(key: key);
 
   @override
   _DayScreenState createState() => _DayScreenState();
@@ -14,13 +16,14 @@ class _DayScreenState extends State<DayScreen> {
       appBar: AppBar(
         backgroundColor: Colors.yellow,
         title: Text(
-          "(¬º_º)¬",
+          "Tasks",
           style: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
         ),
+        centerTitle: true,
       ),
       body: ListView.builder(
           itemCount: 20,

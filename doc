@@ -2,7 +2,7 @@ DESIGN
 
 App to provide a tool to easily administrate a tasks calendar.
 
-The idea is to keep track (as user-friendly anf efficiently as possible) of a list of tasks ordered in time.
+The idea is to keep track (as user-friendly and efficiently as possible) of a list of tasks ordered in time.
 It allows the creation of a work group for any single task.
 Its creator becomes the administrator and has power to delete it, as well as managing its attached users.
 Although, editing the task contents is public by default.
