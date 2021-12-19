@@ -1,29 +1,42 @@
+import 'package:example/screens/single_chat_window.dart';
 import 'package:flutter/material.dart';
 
 class ConversationList extends StatefulWidget{
+  final int id;
   String name;
   String messageText;
   String imageUrl;
   String time;
   bool isMessageRead;
 
-  ConversationList({
-    required this.name, 
-    required this.messageText,
-    required this.imageUrl,
-    required this.time,
-    required this.isMessageRead
-    });
+  ConversationList(
+    this.id,
+    this.name, 
+    this.messageText,
+    this.imageUrl,
+    this.time,
+    this.isMessageRead
+    );
 
   @override
-  _ConversationListState createState() => _ConversationListState();
+  _ConversationListState createState() => _ConversationListState(this.id);
 }
 
 class _ConversationListState extends State<ConversationList> {
+  final int id;
+
+  _ConversationListState(this.id);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
+        Navigator.push(
+          context,
+          new MaterialPageRoute(
+            builder: (BuildContext context) => new SingleChat(id)
+          )
+        );
       },
       child: Container(
         padding: EdgeInsets.only(left: 16,right: 16,top: 10,bottom: 10),

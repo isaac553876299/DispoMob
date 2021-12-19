@@ -2,17 +2,26 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ChatUsers{
+  final int id;
   String name;
-  String messageText;
+  List<String> messageList;
   String avatar;
   String time;
   
-  ChatUsers({
-    required this.name, 
-    required this.messageText, 
-    required this.avatar, 
-    required this.time
-  });
+  ChatUsers(
+    this.id,
+    this.name, 
+    this.messageList,
+    this.avatar, 
+    this.time
+  );
+
+  ChatUsers.empty()
+    : id = 0,
+      name = ' ',
+      messageList = [],
+      avatar = '',
+      time = ' ';
 }
 
 String createAvatarLink(String name){
