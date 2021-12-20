@@ -1,25 +1,26 @@
-class Todo {
-  late String title;
-  late String description;
-  late bool done;
-}
-
-class Poll {
-  late String title;
-  late String description;
-  //only one option?
-  late int min;
-  late int total;
-  late int yes;
-}
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Task {
   late int admin;
-  late List<int> users;
+  late String title;
   late DateTime date;
-  late String description;
-  late int priority;
-  late List<Todo> todos;
-  late List<Poll> polls;
-  //chat
+  late String? description;
+  late List<int> users;
+
+  Task(this.admin, this.title, this.date, this.description, this.users);
+
+  Task.fromFirestore(Map<String, dynamic> data)
+      : admin = data['admin'],
+        title = data['title'],
+        date = (data['date'] as Timestamp).toDate(),
+        description = data['description'],
+        users = data['users'];
+
+  Map<String, dynamic> toFirestore() => {
+        'admin': admin,
+        'title': title,
+        'date': Timestamp.fromDate(date),
+        'description': description,
+        'users': users,
+      };
 }

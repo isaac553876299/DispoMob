@@ -13,7 +13,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber[900],
+        backgroundColor: Colors.yellow[100],
         title: Text(
           "Calendar",
           style: TextStyle(
@@ -47,7 +47,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.greenAccent,
+                  color: Colors.cyan[100],
                 ),
                 child: Stack(
                   children: [
@@ -86,7 +86,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
 class MiniTask extends StatelessWidget {
   final Color color;
-  MiniTask({
+  const MiniTask({
     Key? key,
     required this.color,
   }) : super(key: key);

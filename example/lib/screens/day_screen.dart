@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:example/models/task_model.dart';
 
@@ -10,11 +11,23 @@ class DayScreen extends StatefulWidget {
 }
 
 class _DayScreenState extends State<DayScreen> {
+  Widget _firebaseTest(String descr, void Function() onPressed) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      child: Text(descr),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final db = FirebaseFirestore.instance;
+    final user = db.collection("users");
+    final docRef = user.doc("JcjZjYkn7BrSG9gkLsXr");
+    final tasks = docRef.collection("tasks");
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.amber[100],
         title: Text(
           "Tasks",
           style: TextStyle(
@@ -25,33 +38,54 @@ class _DayScreenState extends State<DayScreen> {
         ),
         centerTitle: true,
       ),
-      body: ListView.builder(
-          itemCount: 20,
-          itemBuilder: (context, index) {
-            return ListTile(
-              leading: Icon(
-                Icons.pending_actions,
-                size: 50,
-                color: Colors.deepPurple,
-              ),
-              title: Text(
-                "2DO",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey[700],
+      body: StreamBuilder(
+        stream: docRef.snapshots(),
+        builder: (
+          BuildContext context,
+          AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot,
+        ) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
+          final doc = snapshot.data!.data()!;
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  doc['texto'] ?? "<not found>",
+                  style: TextStyle(fontSize: 20),
                 ),
-              ),
-              subtitle: Text(
-                "description",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue[900],
+                ElevatedButton(
+                  onPressed: () {
+                    docRef.set({'texto': 'Hola, mundo!'});
+                  },
+                  child: Text("Reset"),
                 ),
-              ),
-            );
-          }),
+                _firebaseTest("Actualizar un documento", () {
+                  docRef.update({
+                    'updated': true,
+                    'texto': "Texto Actualizado",
+                  });
+                }),
+                _firebaseTest("Sobreescribir un documento", () {
+                  docRef.set({'a': "hola", 'b': 123});
+                }),
+                _firebaseTest("Añadir documento a mensajes", () async {
+                  final newdoc = await task.add({'a': true, 'b': 17});
+                  debugPrint(newdoc.id);
+                }),
+                _firebaseTest("Añadir un documento con un ID", () async {
+                  task.doc("aaabbccc").set({'nuevo': true});
+                  final snapshot = await docRef.get();
+                  final fields = snapshot.data()!;
+                  fields.remove('name');
+                }),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
