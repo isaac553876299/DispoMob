@@ -13,7 +13,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber[900],
+        backgroundColor: Colors.yellow[100],
         title: Text(
           "Calendar",
           style: TextStyle(
@@ -39,7 +39,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 setState(() {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => DayScreen(),
+                      builder: (context) => const DayScreen(),
                     ),
                   );
                 });
@@ -47,23 +47,58 @@ class _CalendarScreenState extends State<CalendarScreen> {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Colors.greenAccent,
+                  color: Colors.cyan[100],
                 ),
-                child: Center(
-                  child: Text(
-                    "$index",
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.pink[900],
+                child: Stack(
+                  children: [
+                    Text(
+                      "$index",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink[900],
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 20),
+                      child: Column(
+                        children: const [
+                          MiniTask(color: Colors.pink),
+                          SizedBox(height: 2),
+                          MiniTask(color: Colors.green),
+                          SizedBox(height: 2),
+                          MiniTask(color: Colors.purpleAccent),
+                          SizedBox(height: 2),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
             );
           },
           itemCount: 32,
         ),
+      ),
+    );
+  }
+}
+
+class MiniTask extends StatelessWidget {
+  final Color color;
+  const MiniTask({
+    Key? key,
+    required this.color,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 20,
+      height: 5,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(10),
       ),
     );
   }

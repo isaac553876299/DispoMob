@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 class Screen1 extends StatelessWidget {
@@ -5,7 +7,7 @@ class Screen1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         color: Colors.green,
-          child: Center(child: Text("Here will be the task screen")),
+          child: const Center(child: Text("Here will be the task screen")),
     );
   }
 }

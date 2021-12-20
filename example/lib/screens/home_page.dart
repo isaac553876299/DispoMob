@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:example/screens/chat_page.dart';
 import 'package:example/screens/test.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,7 @@ import 'calendar_screen.dart';
 
 class HomePage extends StatefulWidget {
 @override
-  _HomePageState createState() => new _HomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -14,9 +16,9 @@ class _HomePageState extends State<HomePage> {
   late PageController _pageController;
 
   List<Widget> pages = [
-    // TODO - add other pages (calendar and tasks)
+    // TO DO - add other pages (calendar and tasks)
     ChatPage(),
-    CalendarScreen(),
+    const CalendarScreen(),
     Screen1(),
   ];
 
@@ -40,10 +42,10 @@ class _HomePageState extends State<HomePage> {
             onTap: onTabTapped,
             selectedItemColor: Colors.red,
             unselectedItemColor: Colors.grey.shade600,
-            selectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
-            unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w600),
+            selectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
+            unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.w600),
             type: BottomNavigationBarType.fixed,
-            items: [
+            items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.message),
                 label: "Chats",
@@ -69,11 +71,11 @@ class _HomePageState extends State<HomePage> {
   }
   void onPageChanged(int page) {
     setState(() {
-      this._pageIndex = page;
+      _pageIndex = page;
     });
   }
 
   void onTabTapped(int index) {
-    this._pageController.animateToPage(index,duration: const Duration(milliseconds: 500),curve: Curves.easeInOut);
+    _pageController.animateToPage(index,duration: const Duration(milliseconds: 500),curve: Curves.easeInOut);
   }
 }
