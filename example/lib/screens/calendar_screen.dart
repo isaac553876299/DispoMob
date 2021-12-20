@@ -39,7 +39,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 setState(() {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => DayScreen(),
+                      builder: (context) => const DayScreen(),
                     ),
                   );
                 });
@@ -62,13 +62,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
                     Padding(
                       padding: const EdgeInsets.only(left: 20, top: 20),
                       child: Column(
-                        children: [
+                        children: const [
                           MiniTask(color: Colors.pink),
-                          const SizedBox(height: 2),
+                          SizedBox(height: 2),
                           MiniTask(color: Colors.green),
-                          const SizedBox(height: 2),
+                          SizedBox(height: 2),
                           MiniTask(color: Colors.purpleAccent),
-                          const SizedBox(height: 2),
+                          SizedBox(height: 2),
                         ],
                       ),
                     )

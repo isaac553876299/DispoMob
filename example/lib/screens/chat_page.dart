@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, use_key_in_widget_constructors
+
 import 'package:example/mock/mock_chat_users.dart';
 import 'package:example/models/chat_users_model.dart';
 import 'package:example/widgets/conversation_list.dart';
@@ -6,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class ChatPage extends StatefulWidget {
 
-  var faker = new Faker();
+  var faker = Faker();
 
   @override
   _ChatPageState createState() => _ChatPageState();
@@ -21,17 +23,17 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView( // body section is entirely scrollable
-        physics: BouncingScrollPhysics(), //bouncing effect when a user's scrolling reaches the end or beginning
+        physics: const BouncingScrollPhysics(), //bouncing effect when a user's scrolling reaches the end or beginning
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SafeArea(
               child: Padding(
-                padding: EdgeInsets.only(left: 20, right: 20, top: 20),
+                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text("Conversations",
+                    const Text("Conversations",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
@@ -50,7 +52,7 @@ class _ChatPageState extends State<ChatPage> {
                           const SizedBox(width: 2,),
                           TextButton(
                             style: TextButton.styleFrom(
-                              padding: EdgeInsets.all(0),
+                              padding: const EdgeInsets.all(0),
                               textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
                             ),
                             onPressed: null, // TO DO - create Add_New_Screen
@@ -64,7 +66,7 @@ class _ChatPageState extends State<ChatPage> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 16,left: 16,right: 16),
+              padding: const EdgeInsets.only(top: 16,left: 16,right: 16),
               child: TextField(
                 decoration: InputDecoration(
                   hintText: "Search...",
@@ -72,7 +74,7 @@ class _ChatPageState extends State<ChatPage> {
                   prefixIcon: Icon(Icons.search,color: Colors.grey.shade600, size: 20,),
                   filled: true,
                   fillColor: Colors.grey.shade100,
-                  contentPadding: EdgeInsets.all(8),
+                  contentPadding: const EdgeInsets.all(8),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(
@@ -85,8 +87,8 @@ class _ChatPageState extends State<ChatPage> {
             ListView.builder(
               itemCount: chatUsers.length,
               shrinkWrap: true,
-              padding: EdgeInsets.only(top: 16),
-              physics: NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.only(top: 16),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index){
                 return ConversationList(
                   chatUsers[index].id,

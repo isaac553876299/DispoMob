@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, unused_element, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, no_logic_in_create_state
+
 import 'package:example/mock/mock_chat_users.dart';
 import 'package:example/models/chat_users_model.dart';
 import 'package:flutter/material.dart';
@@ -33,11 +35,11 @@ class _SingleChatState extends State<SingleChat> {
   }
 
   loadData() {
-    final chatUser = MockChatUsers.fetchByID(this.chatId);
+    final chatUser = MockChatUsers.fetchByID(chatId);
 
     if (mounted) {
       setState(() {
-        this.user = chatUser;
+        user = chatUser;
       });
     }
   }
@@ -57,7 +59,7 @@ class _SingleChatState extends State<SingleChat> {
   }
 
   Widget _renderTitle(){
-    return Text("Test");
+    return const Text("Test");
   }
 
   Widget _renderMessages(){
@@ -67,5 +69,4 @@ class _SingleChatState extends State<SingleChat> {
   Widget _renderTextField(){
     return Container();
   }
-
 }

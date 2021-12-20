@@ -35,13 +35,4 @@ Stream<List<Task>> taskSnapshots(
     }
     return tasks;
   });
-  return stream.map((QuerySnapshot<Map<String, dynamic>> qsnapshot) {
-    final docs = qsnapshot.docs;
-    List<Task> tasks =
-        docs.map((QueryDocumentSnapshot<Map<String, dynamic>> dsnapshot) {
-      final data = dsnapshot.data();
-      return Task.fromFirestore(data);
-    }).toList();
-    return tasks;
-  });
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:example/models/task_model.dart';
 
 class DayScreen extends StatefulWidget {
-  DayScreen({Key? key}) : super(key: key);
+  const DayScreen({Key? key}) : super(key: key);
 
   @override
   _DayScreenState createState() => _DayScreenState();
@@ -21,7 +21,7 @@ class _DayScreenState extends State<DayScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber[100],
-        title: Text(
+        title: const Text(
           "Tasks",
           style: TextStyle(
             fontSize: 32,
