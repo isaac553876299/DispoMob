@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:example/screens/chat_page.dart';
 import 'package:example/screens/test.dart';
 import 'package:flutter/material.dart';
+
 import 'calendar_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -64,6 +63,8 @@ class _HomePageState extends State<HomePage> {
         onPageChanged: onPageChanged,
         controller: _pageController,
       ),
+          
+      
     );
   }
   void onPageChanged(int page) {

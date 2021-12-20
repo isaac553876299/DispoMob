@@ -1,5 +1,4 @@
 import 'package:example/models/chat_users_model.dart';
-import 'package:example/screens/test.dart';
 import 'package:example/widgets/conversation_list.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
@@ -61,18 +60,7 @@ class _ChatPageState extends State<ChatPage> {
                         children: <Widget>[
                           Icon(Icons.add,color: Colors.pink,size: 20,),
                           SizedBox(width: 2,),
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              textStyle: const TextStyle(fontSize: 14,fontWeight: FontWeight.bold),
-                            ),
-                            onPressed: null, // TO DO - create Add_New_Screen
-                            child: const Text("Add New"),
-                          ),
-                        
-                        //<Widget>[
-                          //Icon(Icons.add,color: Colors.pink,size: 20,),
-                          //SizedBox(width: 2,),
-                          //Text("Add New",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
+                          Text("Add New",style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold),),
                         ],
                       ),
                     )
