@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Task {
-  late int admin;
+  late String admin;
   late String title;
   late DateTime date;
   late String? description;
-  late List<int> users;
+  late List<String> users;
 
   Task(this.admin, this.title, this.date, this.description, this.users);
 
@@ -23,4 +23,25 @@ class Task {
         'description': description,
         'users': users,
       };
+}
+
+Stream<List<Task>> taskSnapshots(
+    CollectionReference<Map<String, dynamic>> coll) {
+  final stream = coll.snapshots();
+  return stream.map((querySnapshot) {
+    List<Task> tasks = [];
+    for (final doc in querySnapshot.docs) {
+      tasks.add(Task.fromFirestore(doc.data()));
+    }
+    return tasks;
+  });
+  return stream.map((QuerySnapshot<Map<String, dynamic>> qsnapshot) {
+    final docs = qsnapshot.docs;
+    List<Task> tasks =
+        docs.map((QueryDocumentSnapshot<Map<String, dynamic>> dsnapshot) {
+      final data = dsnapshot.data();
+      return Task.fromFirestore(data);
+    }).toList();
+    return tasks;
+  });
 }
