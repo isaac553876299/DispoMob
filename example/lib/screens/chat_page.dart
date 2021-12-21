@@ -1,5 +1,4 @@
 // ignore_for_file: must_be_immutable, use_key_in_widget_constructors
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:example/mock/mock_chat_users.dart';
 import 'package:example/models/chat_users_model.dart';
@@ -18,6 +17,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
 
   final db = FirebaseFirestore.instance;
+  final CollectionReference userCollection = FirebaseFirestore.instance.collection('user');
 
   List<ChatUsers> chatUsers =  
     MockChatUsers.fetchAll() ; 
@@ -88,7 +88,8 @@ class _ChatPageState extends State<ChatPage> {
               ),
             ),
             StreamBuilder(
-              stream: db.doc("users/ha2Ml3Fhx7uvBHTrRWfF").snapshots(),
+              //stream: db.collection('users').document(JcjZjYkn7BrSG9gkLsXr).collection('conversation').orderBy('tag', descending: true).snapshots(),
+              stream: db.doc("/users/JcjZjYkn7BrSG9gkLsXr/conversation/0zsTTmMFVS3G6rp2qD3O").snapshots(),
               builder: (BuildContext context,
               AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot,){
                 if(!snapshot.hasData){
@@ -105,10 +106,9 @@ class _ChatPageState extends State<ChatPage> {
 
                       return ConversationList(
                         0,
-                        doc['conversations'][0].path,
-                        doc['conversations'][0].id,
-                        doc['conversations'][0].id,
-                        doc['conversations'][0].id,
+                        doc['name1'],
+                        doc['text1'],
+                        doc['avatar1'],
                         true,
                       );
                     }
@@ -123,4 +123,9 @@ class _ChatPageState extends State<ChatPage> {
       ),
     );
   }
+
+  /*doc['name1'],
+                        doc['name1'],
+                        doc['avatar1'],
+                        doc['name1'],*/
 }

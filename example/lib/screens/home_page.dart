@@ -3,7 +3,6 @@
 import 'package:example/screens/chat_page.dart';
 import 'package:example/screens/day_screen.dart';
 import 'package:flutter/material.dart';
-
 import 'calendar_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -19,7 +18,7 @@ class _HomePageState extends State<HomePage> {
     // TO DO - add other pages (calendar and tasks)
     ChatPage(),
     const CalendarScreen(),
-    DayScreen(),
+    const DayScreen(),
   ];
 
   @override
@@ -76,6 +75,6 @@ class _HomePageState extends State<HomePage> {
 
   void onTabTapped(int index) {
     _pageController.animateToPage(index,
-        duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+      duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
 }

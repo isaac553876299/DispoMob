@@ -8,7 +8,7 @@ class ConversationList extends StatefulWidget{
   String name;
   String messageText;
   String imageUrl;
-  String time;
+  //String time;
   bool isMessageRead;
 
   ConversationList(
@@ -16,7 +16,7 @@ class ConversationList extends StatefulWidget{
     this.name, 
     this.messageText,
     this.imageUrl,
-    this.time,
+    //this.time,
     this.isMessageRead
     );
 
@@ -68,7 +68,7 @@ class _ConversationListState extends State<ConversationList> {
                 ],
               ),
             ),
-            Text(widget.time,style: TextStyle(fontSize: 12,fontWeight: widget.isMessageRead?FontWeight.bold:FontWeight.normal),),
+            //Text(widget.time,style: TextStyle(fontSize: 12,fontWeight: widget.isMessageRead?FontWeight.bold:FontWeight.normal),),
           ],
         ),
       ),

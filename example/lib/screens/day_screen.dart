@@ -40,7 +40,7 @@ class _DayScreenState extends State<DayScreen> {
                 );
               });
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.add_box,
               size: 30,
               color: Colors.purple,

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ChatUsers{
   final int id;
   String name;
@@ -19,8 +21,4 @@ class ChatUsers{
       messageList = [],
       avatar = '',
       time = ' ';
-}
-
-String createAvatarLink(String name){
-  return "https://eu.ui-avatars.com/api/?name=$name&background=2f855a&color=fff";
 }

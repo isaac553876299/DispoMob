@@ -38,7 +38,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     List<String> users = [];
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Task"),
+        title: const Text("Add Task"),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -54,7 +54,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                     color: Colors.grey[700],
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Expanded(
                     child: TextField(
                   controller: controller1,
@@ -86,7 +86,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 inputFormatters: <TextInputFormatter>[
                   FilteringTextInputFormatter.allow(RegExp(r'[0-4]')),
                 ],
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: "priority",
                   hintText: "input color 0 to 4",
                   icon: Icon(Icons.color_lens),
@@ -103,12 +103,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 selectionMode: DateRangePickerSelectionMode.single,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
-              child: Text(
+              child: const Text(
                 'Save',
                 style: TextStyle(
-                  fontSize: 32,
+                  fontSize: 28,
                 ),
               ),
               onPressed: () {

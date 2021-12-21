@@ -27,14 +27,14 @@ class TaskWidget extends StatelessWidget {
       ),
       title: Text(
         task.title,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
           color: Colors.teal,
         ),
       ),
       subtitle: Text(task.date.toString(),
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
             color: Colors.grey,
