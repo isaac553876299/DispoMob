@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:example/screens/add_task.dart';
 import 'package:example/widgets/task_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:example/models/task_model.dart';
@@ -14,7 +15,7 @@ class _DayScreenState extends State<DayScreen> {
   @override
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance;
-    final tasks = db.collection("/users/JcjZjYkn7BrSG9gkLsXr/tasks");
+    final tasks = db.collection("/tasks");
 
     return Scaffold(
       appBar: AppBar(
@@ -28,6 +29,24 @@ class _DayScreenState extends State<DayScreen> {
           ),
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const AddTaskScreen(),
+                  ),
+                );
+              });
+            },
+            icon: Icon(
+              Icons.add_box,
+              size: 30,
+              color: Colors.purple,
+            ),
+          )
+        ],
       ),
       body: StreamBuilder(
         stream: taskSnapshots(tasks),
