@@ -5,9 +5,11 @@ class TaskWidget extends StatelessWidget {
   final Task task;
 
   final List<Color> colors = [
-    Colors.black,
-    Colors.red,
     Colors.blue,
+    Colors.green,
+    Colors.yellow,
+    Colors.orange,
+    Colors.red,
   ];
 
   TaskWidget({

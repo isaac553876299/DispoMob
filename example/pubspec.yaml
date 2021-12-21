@@ -35,7 +35,7 @@ dependencies:
   firebase_core: ^1.10.0
   cloud_firestore: ^3.1.0
 
-
+  syncfusion_flutter_datepicker: ^19.4.38
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
