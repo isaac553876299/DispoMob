@@ -19,14 +19,9 @@ class TaskWidget extends StatelessWidget {
         children: [
           Column(
             children: [
-              Text('admin: '+task.admin),
-              Spacer(),
-              Text('title: '+task.title),
-              Spacer(),
-              Text('date: '+task.date.toString()),
-              Spacer(),
-              Text('description: '+task.description!),
-              Spacer(),
+              Text('title: ' + task.title),
+              Text('date: ' + task.date.toString()),
+              Text('users: ' + task.users.toString()),
             ],
           ),
         ],

@@ -14,9 +14,7 @@ class _DayScreenState extends State<DayScreen> {
   @override
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance;
-    final user = db.collection("users");
-    final docRef = user.doc("JcjZjYkn7BrSG9gkLsXr");
-    final tasks = docRef.collection("tasks");
+    final tasks = db.collection("/users/JcjZjYkn7BrSG9gkLsXr/tasks");
 
     return Scaffold(
       appBar: AppBar(
