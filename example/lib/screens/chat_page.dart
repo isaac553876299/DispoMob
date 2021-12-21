@@ -1,6 +1,5 @@
 // ignore_for_file: must_be_immutable, use_key_in_widget_constructors
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:example/mock/mock_chat_users.dart';
 import 'package:example/models/chat_users_model.dart';
 import 'package:example/widgets/conversation_list.dart';
@@ -16,8 +15,6 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
-
-  final db = FirebaseFirestore.instance;
 
   List<ChatUsers> chatUsers =  
     MockChatUsers.fetchAll() ; 
@@ -87,36 +84,21 @@ class _ChatPageState extends State<ChatPage> {
                 ),
               ),
             ),
-            StreamBuilder(
-              stream: db.doc("users/ha2Ml3Fhx7uvBHTrRWfF").snapshots(),
-              builder: (BuildContext context,
-              AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot,){
-                if(!snapshot.hasData){
-                  return const Center(child: CircularProgressIndicator());
-                }
-                final doc = snapshot.data!.data();
-                if (doc != null) {
-                  return ListView.builder(
-                    itemCount: doc.length,
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.only(top: 16),
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index){
-
-                      return ConversationList(
-                        0,
-                        doc['conversations'][0].path,
-                        doc['conversations'][0].id,
-                        doc['conversations'][0].id,
-                        doc['conversations'][0].id,
-                        true,
-                      );
-                    }
-                  );
-                }else{
-                  return const Center(child: Text("doc is null"));
-                }
-              }
+            ListView.builder(
+              itemCount: chatUsers.length,
+              shrinkWrap: true,
+              padding: const EdgeInsets.only(top: 16),
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index){
+                return ConversationList(
+                  chatUsers[index].id,
+                  chatUsers[index].name,
+                  chatUsers[index].messageList.last,
+                  chatUsers[index].avatar,
+                  chatUsers[index].time,
+                  (index == 0 || index == 3)?true:false,
+                );
+              },
             ),
           ],
         ),
