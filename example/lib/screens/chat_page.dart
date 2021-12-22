@@ -88,7 +88,6 @@ class _ChatPageState extends State<ChatPage> {
               ),
             ),
             StreamBuilder(
-              //stream: db.collection('users').document(JcjZjYkn7BrSG9gkLsXr).collection('conversation').orderBy('tag', descending: true).snapshots(),
               stream: db.doc("/users/JcjZjYkn7BrSG9gkLsXr/conversation/0zsTTmMFVS3G6rp2qD3O").snapshots(),
               builder: (BuildContext context,
               AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot,){
@@ -106,9 +105,10 @@ class _ChatPageState extends State<ChatPage> {
 
                       return ConversationList(
                         0,
-                        doc['name1'],
-                        doc['text1'],
+                        doc['name2'],
+                        doc['messages'][0],
                         doc['avatar1'],
+                        doc['yesterday'],
                         true,
                       );
                     }
@@ -123,9 +123,4 @@ class _ChatPageState extends State<ChatPage> {
       ),
     );
   }
-
-  /*doc['name1'],
-                        doc['name1'],
-                        doc['avatar1'],
-                        doc['name1'],*/
 }
