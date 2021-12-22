@@ -15,7 +15,6 @@ class _HomePageState extends State<HomePage> {
   late PageController _pageController;
 
   List<Widget> pages = [
-    // TO DO - add other pages (calendar and tasks)
     ChatPage(),
     const CalendarScreen(),
     const DayScreen(),
@@ -75,6 +74,6 @@ class _HomePageState extends State<HomePage> {
 
   void onTabTapped(int index) {
     _pageController.animateToPage(index,
-      duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+        duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
 }

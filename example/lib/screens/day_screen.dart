@@ -3,6 +3,7 @@ import 'package:example/screens/add_task.dart';
 import 'package:example/widgets/task_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:example/models/task_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class DayScreen extends StatefulWidget {
   const DayScreen({Key? key}) : super(key: key);
@@ -15,8 +16,7 @@ class _DayScreenState extends State<DayScreen> {
   @override
   Widget build(BuildContext context) {
     final db = FirebaseFirestore.instance;
-    final tasks = db.collection("/tasks");
-
+    final tasks = db.collection('tasks');
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.amber[100],
@@ -45,11 +45,23 @@ class _DayScreenState extends State<DayScreen> {
               size: 30,
               color: Colors.purple,
             ),
+          ),
+          IconButton(
+            icon: const Icon(
+              Icons.logout,
+              size: 30,
+              color: Colors.pink,
+            ),
+            onPressed: () {
+              setState(() {
+                FirebaseAuth.instance.signOut();
+              });
+            },
           )
         ],
       ),
       body: StreamBuilder(
-        stream: taskSnapshots(tasks),
+        stream: taskSnapshots(),
         builder: (
           BuildContext context,
           AsyncSnapshot<List<Task>> snapshot,
@@ -63,8 +75,41 @@ class _DayScreenState extends State<DayScreen> {
             case ConnectionState.active:
               return ListView.builder(
                   itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) =>
-                      TaskWidget(task: snapshot.data![index]));
+                  itemBuilder: (context, index) => GestureDetector(
+                        child: TaskWidget(task: snapshot.data![index]),
+                        onLongPress: () {
+                          showDialog<bool>(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text("Confirm Delete"),
+                                content: Text(
+                                  "Are you sure you want to "
+                                  "delete '${snapshot.data![index].title}'?",
+                                ),
+                                actions: [
+                                  TextButton(
+                                    child: const Text("Cancel"),
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(),
+                                  ),
+                                  TextButton(
+                                    child: const Text("Delete"),
+                                    onPressed: () => {
+                                      setState(() {
+                                        tasks
+                                            .doc(snapshot.data![index].id)
+                                            .delete();
+                                        Navigator.of(context).pop();
+                                      })
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                      ));
             case ConnectionState.done:
               return ErrorWidget("Firestore Stream finished????");
             case ConnectionState.none:
