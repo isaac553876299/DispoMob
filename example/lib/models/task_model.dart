@@ -28,11 +28,7 @@ class Task {
 Stream<List<Task>> taskSnapshots() {
   final db = FirebaseFirestore.instance;
   final user = FirebaseAuth.instance.currentUser!;
-  final stream = db
-      .collection('tasks')
-      /*.where('users', arrayContains: user.uid)*/
-      .orderBy('date')
-      .snapshots();
+  final stream = db.collection('tasks').orderBy('date').snapshots();
   return stream.map((querySnapshot) {
     List<Task> tasks = [];
     for (final doc in querySnapshot.docs) {
