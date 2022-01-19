@@ -2,10 +2,10 @@
 
 import 'package:example/mock/mock_chat_users.dart';
 import 'package:example/models/chat_users_model.dart';
+import 'package:example/widgets/chat_body.dart';
 import 'package:flutter/material.dart';
 
 class SingleChat extends StatefulWidget {
-
   final int chatId;
   SingleChat(this.chatId);
 
@@ -14,7 +14,6 @@ class SingleChat extends StatefulWidget {
 }
 
 class _SingleChatState extends State<SingleChat> {
-
   final int chatId;
   ChatUsers user = ChatUsers.empty();
 
@@ -30,7 +29,11 @@ class _SingleChatState extends State<SingleChat> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Stack(children: [],),
+      body: Stack(
+        children: [
+          _renderTextField(),
+        ],
+      ),
     );
   }
 
@@ -51,22 +54,21 @@ class _SingleChatState extends State<SingleChat> {
     result.add(_renderTextField());
     return SingleChildScrollView(
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: result
-      ),
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: result),
     );
   }
 
-  Widget _renderTitle(){
+  Widget _renderTitle() {
     return const Text("Test");
   }
 
-  Widget _renderMessages(){
+  Widget _renderMessages() {
     return Container();
   }
 
-  Widget _renderTextField(){
-    return Container();
+  Widget _renderTextField() {
+    return ChatBody();
   }
 }

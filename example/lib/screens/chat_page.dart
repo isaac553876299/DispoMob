@@ -2,6 +2,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:example/mock/mock_chat_users.dart';
 import 'package:example/models/chat_users_model.dart';
+import 'package:example/screens/single_chat_window.dart';
 import 'package:example/widgets/conversation_list.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,13 @@ class _ChatPageState extends State<ChatPage> {
                               textStyle: const TextStyle(
                                   fontSize: 13, fontWeight: FontWeight.bold),
                             ),
-                            onPressed: null, // TO DO - create Add_New_Screen
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => SingleChat(0),
+                                ),
+                              );
+                            }, // TO DO - create Add_New_Screen
                             child: const Text("Add New"),
                           ),
                         ],
