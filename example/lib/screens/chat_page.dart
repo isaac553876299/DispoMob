@@ -66,7 +66,9 @@ class _ChatPageState extends State<ChatPage> {
                             style: TextButton.styleFrom(
                               padding: const EdgeInsets.all(0),
                               textStyle: const TextStyle(
-                                  fontSize: 13, fontWeight: FontWeight.bold),
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
                             ),
                             onPressed: () {
                               Navigator.of(context).push(
@@ -74,7 +76,7 @@ class _ChatPageState extends State<ChatPage> {
                                   builder: (context) => SingleChat(0),
                                 ),
                               );
-                            }, // TO DO - create Add_New_Screen
+                            },
                             child: const Text("Add New"),
                           ),
                         ],

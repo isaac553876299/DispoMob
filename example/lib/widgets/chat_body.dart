@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ChatBody extends StatelessWidget {
   const ChatBody({Key? key}) : super(key: key);
@@ -19,9 +20,13 @@ class ChatBody extends StatelessWidget {
           child: SafeArea(
               child: Row(
             children: [
-              Icon(
-                Icons.mic,
-                color: Colors.green[300],
+              CreateIconButton(
+                context,
+                Icon(
+                  Icons.mic,
+                  color: Colors.blue[300],
+                ),
+                null,
               ),
               const SizedBox(
                 width: 20,
@@ -37,13 +42,17 @@ class ChatBody extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Icon(
-                        Icons.sentiment_satisfied_alt_outlined,
-                        color: Theme.of(context)
-                            .textTheme
-                            .bodyText1!
-                            .color
-                            ?.withOpacity(0.64),
+                      CreateIconButton(
+                        context,
+                        Icon(
+                          Icons.sentiment_satisfied_alt_outlined,
+                          color: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .color
+                              ?.withOpacity(0.64),
+                        ),
+                        null,
                       ),
                       const SizedBox(
                         width: 5,
@@ -55,33 +64,62 @@ class ChatBody extends StatelessWidget {
                           border: InputBorder.none,
                         ),
                       )),
-                      Icon(
-                        Icons.attach_file_outlined,
-                        color: Theme.of(context)
-                            .textTheme
-                            .bodyText1!
-                            .color
-                            ?.withOpacity(0.64),
+                      CreateIconButton(
+                        context,
+                        Icon(
+                          Icons.attach_file_outlined,
+                          color: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .color
+                              ?.withOpacity(0.64),
+                        ),
+                        null,
                       ),
                       const SizedBox(
                         width: 5,
                       ),
-                      Icon(
-                        Icons.camera_alt_outlined,
-                        color: Theme.of(context)
-                            .textTheme
-                            .bodyText1!
-                            .color
-                            ?.withOpacity(0.64),
-                      ),
+                      CreateIconButton(
+                          context,
+                          Icon(
+                            Icons.camera_alt_outlined,
+                            color: Theme.of(context)
+                                .textTheme
+                                .bodyText1!
+                                .color
+                                ?.withOpacity(0.64),
+                          ),
+                          null),
                     ],
                   ),
                 ),
-              )
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              CreateIconButton(
+                context,
+                const Icon(
+                  Icons.send_rounded,
+                  size: 30,
+                  color: Colors.blue,
+                ),
+                null,
+              ),
             ],
           )),
         )
       ],
+    );
+  }
+
+  void buildEmoji() async {}
+
+  // ignore: non_constant_identifier_names
+  IconButton CreateIconButton(context, Icon icon, Function()? onPressed) {
+    return IconButton(
+      onPressed: onPressed,
+      icon: icon,
     );
   }
 }
