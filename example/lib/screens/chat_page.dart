@@ -17,7 +17,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   final db = FirebaseFirestore.instance;
   final CollectionReference userCollection =
-      FirebaseFirestore.instance.collection('user');
+      FirebaseFirestore.instance.collection('users');
 
   List<ChatUsers> chatUsers = MockChatUsers.fetchAll();
 
@@ -110,15 +110,16 @@ class _ChatPageState extends State<ChatPage> {
                 ) {
                   if (!snapshot.hasData) {
                     return const Center(child: CircularProgressIndicator());
+                  } else {
+                    return ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.only(top: 16),
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          return snapshot.data![index];
+                        });
                   }
-                  return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      shrinkWrap: true,
-                      padding: const EdgeInsets.only(top: 16),
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return snapshot.data![index];
-                      });
                 }),
           ],
         ),
