@@ -19,7 +19,7 @@ class _DayScreenState extends State<DayScreen> {
     final tasks = db.collection('tasks');
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue[100],
+        backgroundColor: Colors.white,
         title: const Text(
           "Tasks",
           style: TextStyle(

@@ -24,6 +24,57 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          "Conversations",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 30,
+          ),
+        ),
+        actions: [
+          Container(
+            padding:
+                const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+            height: 20,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.pink[50],
+            ),
+            child: Row(
+              children: <Widget>[
+                const Icon(
+                  Icons.add,
+                  color: Colors.pink,
+                  size: 20,
+                ),
+                const SizedBox(
+                  width: 2,
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.all(0),
+                    textStyle: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black),
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => SingleChat(0),
+                      ),
+                    );
+                  },
+                  child: const Text("Add New"),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
       body: SingleChildScrollView(
         // body section is entirely scrollable
         physics:
@@ -36,53 +87,7 @@ class _ChatPageState extends State<ChatPage> {
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    const Text(
-                      "Conversations",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30,
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.only(
-                          left: 10, right: 10, top: 2, bottom: 2),
-                      height: 30,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Colors.pink[50],
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          const Icon(
-                            Icons.add,
-                            color: Colors.pink,
-                            size: 20,
-                          ),
-                          const SizedBox(
-                            width: 2,
-                          ),
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              padding: const EdgeInsets.all(0),
-                              textStyle: const TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            ),
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => SingleChat(0),
-                                ),
-                              );
-                            },
-                            child: const Text("Add New"),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
+                  children: <Widget>[],
                 ),
               ),
             ),
