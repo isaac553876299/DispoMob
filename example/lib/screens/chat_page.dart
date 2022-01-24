@@ -82,15 +82,6 @@ class _ChatPageState extends State<ChatPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[],
-                ),
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
               child: TextField(
@@ -112,110 +103,48 @@ class _ChatPageState extends State<ChatPage> {
               ),
             ),
             StreamBuilder(
-                stream: db
-                    .doc(
-                        "/users/JcjZjYkn7BrSG9gkLsXr/conversation/0zsTTmMFVS3G6rp2qD3O")
-                    .snapshots(),
+                stream: chatSnapshots(),
                 builder: (
                   BuildContext context,
-                  AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>>
-                      snapshot,
+                  AsyncSnapshot<List<ConversationList>> snapshot,
                 ) {
                   if (!snapshot.hasData) {
                     return const Center(child: CircularProgressIndicator());
                   }
-                  final doc = snapshot.data!.data();
-                  if (doc != null) {
-                    return ListView.builder(
-                        itemCount: 1,
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.only(top: 16),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return ConversationList(
-                            0,
-                            doc['name'],
-                            doc['messages'][0],
-                            doc['avatar'],
-                            doc['time'],
-                            doc['isRead'],
-                          );
-                        });
-                  } else {
-                    return const Center(child: Text("doc is null"));
-                  }
-                }),
-            StreamBuilder(
-                stream: db
-                    .doc(
-                        "/users/JcjZjYkn7BrSG9gkLsXr/conversation/khQJDHRl4cfPMTJsgIXl")
-                    .snapshots(),
-                builder: (
-                  BuildContext context,
-                  AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>>
-                      snapshot,
-                ) {
-                  if (!snapshot.hasData) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  final doc = snapshot.data!.data();
-                  if (doc != null) {
-                    return ListView.builder(
-                        itemCount: 1,
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.only(top: 16),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return ConversationList(
-                            0,
-                            doc['name'],
-                            doc['messages'][2],
-                            doc['avatar'],
-                            doc['time'],
-                            doc['isRead'],
-                          );
-                        });
-                  } else {
-                    return const Center(child: Text("doc is null"));
-                  }
-                }),
-            StreamBuilder(
-                stream: db
-                    .doc(
-                        "/users/JcjZjYkn7BrSG9gkLsXr/conversation/o9JT97KWlmVV7IItTN7f")
-                    .snapshots(),
-                builder: (
-                  BuildContext context,
-                  AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>>
-                      snapshot,
-                ) {
-                  if (!snapshot.hasData) {
-                    return const Center(child: CircularProgressIndicator());
-                  }
-                  final doc = snapshot.data!.data();
-                  if (doc != null) {
-                    return ListView.builder(
-                        itemCount: 1,
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.only(top: 16),
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          return ConversationList(
-                            0,
-                            doc['name'],
-                            doc['messages'][2],
-                            doc['avatar'],
-                            doc['time'],
-                            doc['isRead'],
-                          );
-                        });
-                  } else {
-                    return const Center(child: Text("doc is null"));
-                  }
+                  return ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.only(top: 16),
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return snapshot.data![index];
+                      });
                 }),
           ],
         ),
       ),
     );
   }
+}
+
+Stream<List<ConversationList>> chatSnapshots() {
+  final db = FirebaseFirestore.instance;
+  final stream =
+      db.collection('users/JcjZjYkn7BrSG9gkLsXr/conversation').snapshots();
+  return stream.map((querySnapshot) {
+    List<ConversationList> chats = [];
+    for (final doc in querySnapshot.docs) {
+      chats.add(
+        ConversationList(
+          0,
+          doc['name'],
+          doc['messages'][0],
+          doc['avatar'],
+          doc['time'],
+          doc['isRead'],
+        ),
+      );
+    }
+    return chats;
+  });
 }
