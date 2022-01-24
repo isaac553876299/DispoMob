@@ -1,6 +1,7 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class ChatBody extends StatelessWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> doc;
@@ -20,21 +21,54 @@ class ChatBody extends StatelessWidget {
                 return const Center(child: CircularProgressIndicator());
               } else {
                 List<dynamic> message = doc['messages'];
+                String name = doc['name'];
+                String avatar = doc['avatar'];
                 return Expanded(
-                    child: ListView.builder(
-                        itemCount: message.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Container(
-                            padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                            margin: EdgeInsets.all(10),
-                            decoration: const BoxDecoration(
-                                color: Colors.grey,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(20))),
-                            child: Text(message[index].toString()),
-                            width: message[index].toString().length.toDouble(),
-                          );
-                        }));
+                  child: Column(
+                    children: [
+                      AppBar(
+                        title: Padding(
+                          padding: const EdgeInsets.only(top: 10.0),
+                          child: Row(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(2.0),
+                                child: CircleAvatar(
+                                  backgroundImage: NetworkImage(avatar),
+                                  radius: 25,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Text(name),
+                            ],
+                          ),
+                        ),
+                      ),
+/*
+                      Expanded(
+                          child: ListView.builder(
+                              itemCount: message.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Container(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                                  margin: const EdgeInsets.all(10),
+                                  decoration: const BoxDecoration(
+                                      color: Colors.grey,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20))),
+                                  child: Text(message[index].toString()),
+                                  width:
+                                      message[index].toString().length.toDouble(),
+                                );
+                              }
+                            ),
+                            ),*/
+                    ],
+                  ),
+                );
               }
             }),
         const Spacer(),

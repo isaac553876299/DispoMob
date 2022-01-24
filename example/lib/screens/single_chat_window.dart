@@ -28,7 +28,6 @@ class _SingleChatState extends State<SingleChat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       body: Stack(
         children: [
           _renderTextField(),
@@ -49,9 +48,9 @@ class _SingleChatState extends State<SingleChat> {
 
   Widget _renderBody(BuildContext context, ChatUsers chat_user) {
     var result = <Widget>[];
-    result.add(_renderTitle());
+    //result.add(_renderTitle());
     result.add(_renderMessages());
-    result.add(_renderTextField());
+    //result.add(_renderTextField());
     return SingleChildScrollView(
       child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +64,7 @@ class _SingleChatState extends State<SingleChat> {
   }
 
   Widget _renderMessages() {
-    return Container();
+    return ChatBody(doc: chatId);
   }
 
   Widget _renderTextField() {
