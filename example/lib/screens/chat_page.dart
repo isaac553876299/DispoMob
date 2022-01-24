@@ -26,7 +26,7 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           "Conversations",
           style: TextStyle(
             color: Colors.black,
@@ -136,7 +136,7 @@ Stream<List<ConversationList>> chatSnapshots() {
     for (final doc in querySnapshot.docs) {
       chats.add(
         ConversationList(
-          0,
+          doc,
           doc['name'],
           doc['messages'][0],
           doc['avatar'],

@@ -6,7 +6,7 @@ import 'package:example/widgets/chat_body.dart';
 import 'package:flutter/material.dart';
 
 class SingleChat extends StatefulWidget {
-  final int chatId;
+  final chatId;
   SingleChat(this.chatId);
 
   @override
@@ -14,7 +14,7 @@ class SingleChat extends StatefulWidget {
 }
 
 class _SingleChatState extends State<SingleChat> {
-  final int chatId;
+  final chatId;
   ChatUsers user = ChatUsers.empty();
 
   _SingleChatState(this.chatId);
@@ -38,7 +38,7 @@ class _SingleChatState extends State<SingleChat> {
   }
 
   loadData() {
-    final chatUser = MockChatUsers.fetchByID(chatId);
+    final chatUser = MockChatUsers.fetchByID(0);
 
     if (mounted) {
       setState(() {
@@ -69,6 +69,6 @@ class _SingleChatState extends State<SingleChat> {
   }
 
   Widget _renderTextField() {
-    return ChatBody();
+    return ChatBody(doc: chatId);
   }
 }

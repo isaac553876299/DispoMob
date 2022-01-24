@@ -4,7 +4,7 @@ import 'package:example/screens/single_chat_window.dart';
 import 'package:flutter/material.dart';
 
 class ConversationList extends StatefulWidget {
-  final int id;
+  final id;
   String name;
   String messageText;
   String imageUrl;
@@ -19,7 +19,7 @@ class ConversationList extends StatefulWidget {
 }
 
 class _ConversationListState extends State<ConversationList> {
-  final int id;
+  final id;
 
   _ConversationListState(this.id);
 

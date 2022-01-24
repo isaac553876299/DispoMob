@@ -1,13 +1,42 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ChatBody extends StatelessWidget {
-  const ChatBody({Key? key}) : super(key: key);
+  final QueryDocumentSnapshot<Map<String, dynamic>> doc;
+  const ChatBody({Key? key, required this.doc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        StreamBuilder(
+            stream: doc.reference.snapshots(),
+            builder: (BuildContext context,
+                AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>>
+                    snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                List<dynamic> message = doc['messages'];
+                return Expanded(
+                    child: ListView.builder(
+                        itemCount: message.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Container(
+                            padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+                            margin: EdgeInsets.all(10),
+                            decoration: const BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20))),
+                            child: Text(message[index].toString()),
+                            width: message[index].toString().length.toDouble(),
+                          );
+                        }));
+              }
+            }),
         const Spacer(),
         Container(
           padding: const EdgeInsets.symmetric(
