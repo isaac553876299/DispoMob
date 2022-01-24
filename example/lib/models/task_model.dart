@@ -25,15 +25,25 @@ class Task {
       };
 }
 
-Stream<List<Task>> taskSnapshots() {
+Stream<List<Task>> taskSnapshots(DateTime date) {
   final db = FirebaseFirestore.instance;
   final user = FirebaseAuth.instance.currentUser!;
-  final stream = db.collection('tasks').orderBy('date').snapshots();
+  final stream = db
+      .collection('tasks')
+      .orderBy('date')
+      //.where((t) => t['date'] == date)
+      .snapshots();
   return stream.map((querySnapshot) {
     List<Task> tasks = [];
     for (final doc in querySnapshot.docs) {
       tasks.add(Task.fromFirestore(doc.id, doc.data()));
     }
-    return tasks;
+    return tasks
+        .where((t) => t.date.day == date.day)
+        .toList()
+        .where((t) => t.date.month == date.month)
+        .toList()
+        .where((t) => t.date.year == date.year)
+        .toList();
   });
 }

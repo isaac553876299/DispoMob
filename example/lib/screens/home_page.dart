@@ -17,7 +17,9 @@ class _HomePageState extends State<HomePage> {
   List<Widget> pages = [
     ChatPage(),
     const CalendarScreen(),
-    const DayScreen(),
+    DayScreen(
+      date: DateTime(0),
+    ),
   ];
 
   @override

@@ -6,8 +6,8 @@ import 'package:example/models/task_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class DayScreen extends StatefulWidget {
-  const DayScreen({Key? key}) : super(key: key);
-
+  final DateTime date;
+  DayScreen({Key? key, required this.date}) : super(key: key);
   @override
   _DayScreenState createState() => _DayScreenState();
 }
@@ -19,7 +19,7 @@ class _DayScreenState extends State<DayScreen> {
     final tasks = db.collection('tasks');
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber[100],
+        backgroundColor: Colors.blue[100],
         title: const Text(
           "Tasks",
           style: TextStyle(
@@ -41,16 +41,16 @@ class _DayScreenState extends State<DayScreen> {
               });
             },
             icon: const Icon(
-              Icons.add_box,
+              Icons.add,
               size: 30,
-              color: Colors.purple,
+              color: Colors.black26,
             ),
           ),
           IconButton(
             icon: const Icon(
               Icons.logout,
               size: 30,
-              color: Colors.pink,
+              color: Colors.black26,
             ),
             onPressed: () {
               setState(() {
@@ -61,7 +61,7 @@ class _DayScreenState extends State<DayScreen> {
         ],
       ),
       body: StreamBuilder(
-        stream: taskSnapshots(),
+        stream: taskSnapshots(widget.date),
         builder: (
           BuildContext context,
           AsyncSnapshot<List<Task>> snapshot,

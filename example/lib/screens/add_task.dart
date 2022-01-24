@@ -41,13 +41,13 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
         title: const Text("Add Task"),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.all(20),
         child: ListView(
           children: [
             Row(
               children: [
                 Text(
-                  'title: ',
+                  'Title: ',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
@@ -67,18 +67,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 )),
               ],
             ),
-            /*Container(
-              decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView.builder(
-                  itemCount: users.length,
-                  itemBuilder: (context, index) => Text(users[index]),
-                ),
-              ),
-            ),
-            Expanded(child: TextField(controller: controller3)),*/
             Expanded(
               child: TextFormField(
                 controller: controller2,
